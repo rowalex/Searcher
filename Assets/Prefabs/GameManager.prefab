@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2068636648283264049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5034531972675207530}
+  - component: {fileID: 928827609335809031}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5034531972675207530
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068636648283264049}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &928827609335809031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068636648283264049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe14f437b4d19714e90571fdc5f5827a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTimeGoes: 1
+  movementScript: {fileID: 0}
+  isAbleToMove: 1
+  isMoving: 0
+  isMouseWork: 1
+  isMouseMoving: 0
+  isAbleToThrust: 0
+  isThrusting: 0
+  currFuel: 0
+  maxFuel: 100
+  thrustCost: 30
+  refuelSpeed: 10
+  isAbleToStabizate: 1
+  isStabilizating: 0
+  isAbleToLand: 1
+  isLanding: 0
+  isLanded: 0
+  isAbleToRewind: 1
+  isRewind: 0
+  timeForRewind: 10
+  capturingScript: {fileID: 0}
+  isAbleToCapture: 1
+  isCapturing: 0
+  isDistanceToCapture: 0
+  timeToCapture: 2
+  captureDistance: 2
+  captureMask:
+    serializedVersion: 2
+    m_Bits: 128
+  captureKey: 102
+  isAbleToInvis: 0
+  isInvis: 0
+  timeToInvis: 2
+  invisScript: {fileID: 0}
+  rewindUI: {fileID: 0}
+  stabilizerUI: {fileID: 0}
+  thrusterUI: {fileID: 0}
+  trustSlider: {fileID: 0}
+  landingUI: {fileID: 0}
+  capturingUI: {fileID: 0}
+  capturingDistanceUI: {fileID: 0}
+  pauseKey: 27
+  pauseMenu: {fileID: 0}
+  isPause: 1
+  isAbleToBeHit: 1
+  hpUI: {fileID: 0}
+  maxHP: 1
+  slider: {fileID: 0}
+  playerInf: {fileID: 0}
+  hpText: {fileID: 0}
+  regenTimer: 0
+  regenTime: 3
+  finishUI: {fileID: 0}
+  isFinish: 0
+  isEnemiesWork: 1
