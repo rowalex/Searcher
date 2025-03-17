@@ -180,11 +180,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         isInvis = invisScript.isVisible;
-        isMoving = movementScript.isMoving;
-        isMouseMoving = movementScript.isMouseMoving;
-        isStabilizating = movementScript.isStabializing;
-        isThrusting = movementScript.isThrusting;
-        isLanding = movementScript.isLanding;
+        //isMoving = movementScript.isMoving;
+        //isMouseMoving = movementScript.isMouseMoving;
+        //isStabilizating = movementScript.isStabializing;
+        //isThrusting = movementScript.isThrusting;
+        //isLanding = movementScript.isLanding;
         isRewind = FindAnyObjectByType<TimeBody>().isRewind;
         isCapturing = capturingScript.isCapturing;
         isDistanceToCapture = capturingScript.isDistanceToCapture;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerBaseInfo : MonoBehaviour
 {
     public float movementSpeed;
-    private Vector3 movementVector;
+    public Vector3 movementVector;
     private Vector3 prevPos;
     private Vector3 nextPos;
     public float hitValue;
@@ -34,28 +34,10 @@ public class PlayerBaseInfo : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<BaseInfo>())
+        Debug.Log(collision.impulse.magnitude);
+        if (collision.impulse.magnitude > hitValue && timer < 0)
         {
-            Vector3 comp;
-            Vector3 hitVector = collision.gameObject.GetComponent<BaseInfo>().nextPos - collision.gameObject.GetComponent<BaseInfo>().prevPos;
-            comp = Vector3.Project(movementVector, hitVector);
-            Debug.Log((hitVector - comp).magnitude);
-            if ((hitVector - comp).magnitude * 100 > hitValue && timer < 0)
-            {
-                timer = immunityWindow;
-            }
-        }
-        else
-        {
-            //Vector3 hitpos = collision.GetContact(0).point;
-            //Vector3 hitVector = hitpos - transform.position;
-            //Vector3 finvector = Vector3.Project(movementVector, hitVector);
-
-            Debug.Log((movementVector - Vector3.zero).magnitude);
-            if ((movementVector - Vector3.zero).magnitude * 100 > hitValue && timer<0)
-            {
-                timer = immunityWindow;
-            }
+            timer = immunityWindow;
         }
     }
 }
