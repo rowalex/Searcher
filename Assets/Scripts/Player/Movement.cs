@@ -2,7 +2,7 @@ using System;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.AI;
 
 public class Movement : MonoBehaviour
 {
@@ -98,14 +98,25 @@ public class Movement : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         SetPossibilities();
+        rb.useGravity = true;
     }
 
     private void Update()
     {
+        NewInput();
+    }
+
+    void FixedUpdate()
+    {
+        NewMovement();
+    }
+
+    private void OldInput()
+    {
         SetPossibilities();
 
         mouseTurn.x = Input.GetAxisRaw("Mouse X") * Time.deltaTime * mouseSensitivityX;
-        mouseTurn.y = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * mouseSensitivityY;    
+        mouseTurn.y = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * mouseSensitivityY;
 
         if (isMouseWork)
         {
@@ -149,14 +160,10 @@ public class Movement : MonoBehaviour
                 currentThrustPower = 1;
             }
         }
-
-
     }
-
-    void FixedUpdate()
+    
+    private void OldMovement()
     {
-
-
         isFrontForce = false;
         isBackForce = false;
         isLeftForce = false;
@@ -251,7 +258,7 @@ public class Movement : MonoBehaviour
 
             if (rotateVector != Vector3.zero || movementVector != Vector3.zero)
                 isMoving = true;
-            else 
+            else
                 isMoving = false;
 
             transform.Rotate(rotateVector);
@@ -262,8 +269,122 @@ public class Movement : MonoBehaviour
         if (isStabializing) isStabializing = Stabilization(x_value, z_value);
         if (isLanding && isLandable) isLanding = Landing();
         else isLanding = false;
+    }
+
+    private bool isSpacePressed = false;
+
+    private void NewInput()
+    {
+        float forInput = 0;
+        float sideInput = 0;
+
+        if (Input.GetKeyDown(thrustKey))
+        {
+            forInput = Input.GetAxis("Vertical");
+            sideForce = Input.GetAxis("Horizontal");
+            if (Input.GetKey(KeyCode.Space))
+                isSpacePressed = true;
+            else
+                isSpacePressed = false;
+        }
+        if (Input.GetKeyUp(thrustKey))
+        {
+            Vector3 jump = Vector3.zero;
+            if (forInput != 0)
+                jump += transform.forward * forInput;
+            if (sideForce != 0)
+                jump += transform.right * sideInput;
+            if (isSpacePressed)
+                jump += transform.up;
+
+            Debug.Log(jump);
+            Jump(jump.normalized);
+            
+        }
+    }
+
+    private void NewMovement()
+    {
+        Time.timeScale = 0.3f;
+        RaycastHit hit;
+        float forInput = Input.GetAxis("Vertical");
+        float sideInput = Input.GetAxis("Horizontal");
+
+        if (Physics.Raycast(groundCheck.position, -transform.up, out hit, groundDistance, groundMask))
+        {
+            rb.useGravity = false;
+            rb.drag = 2;
+
+
+            Vector3 normal = hit.normal;
+            float height = groundDistance;
+            Vector3 target = hit.point + normal * height;
+
+            if ((transform.position - hit.point).magnitude >= groundDistance * 0.6f)
+            {
+                rb.AddForce(-transform.up * landingSpeed * Time.deltaTime, ForceMode.Acceleration);
+            }            
+            //else if ((transform.position - hit.point).magnitude <= groundDistance * 0.3f)
+            //{
+            //    rb.AddForce(transform.up * landingSpeed * Time.deltaTime, ForceMode.Acceleration);
+            //}
+
+                if (Physics.Raycast(landPointFront.position, -transform.up, out hitInfoFront, rayDistanse) && Physics.Raycast(landPointRight.position, -transform.up, out hitInfoRight, rayDistanse)
+                && Physics.Raycast(landPointLeft.position, -transform.up, out hitInfoLeft, rayDistanse) && Physics.Raycast(landPointBack.position, -transform.up, out hitInfoBack, rayDistanse))
+            {
+                Vector3 forwardVector = Vector3.Normalize(hitInfoFront.point - hitInfoBack.point);
+                Vector3 sideVector = Vector3.Normalize(hitInfoRight.point - hitInfoLeft.point);
+                float angleX = Vector3.SignedAngle(transform.forward, forwardVector, transform.right);
+                float angleZ = Vector3.SignedAngle(transform.right, sideVector, transform.forward);
+                Stabilization(TranslateDegreceXIntoEulerXForMainBody(transform.eulerAngles.x + angleX), TranslateDegreceZIntoEulerZForMainBody(transform.eulerAngles.z + angleZ));
+            }
+
+            float speedFor = 10f;
+            float speedRot = 100f;
+
+            Vector3 dir = Vector3.Dot(transform.forward, normal) * normal;
+            dir = transform.forward - dir;
+
+            transform.position += dir * forInput * Time.deltaTime * speedFor;
+            transform.Rotate(Vector3.up * sideInput * Time.deltaTime * speedRot);
+
+        }
+        else
+        {
+            rb.useGravity = true;
+            rb.drag = 0.5f;
+
+            Vector3 rotateVector = Vector3.zero;
+
+            if (Input.GetKey(leftRollPowerKey))
+            {
+                rotateVector += Vector3.forward * sideRollsPower * Time.deltaTime;
+            }
+            if (Input.GetKey(rightRollPowerKey))
+            {
+                rotateVector -= Vector3.forward * sideRollsPower * Time.deltaTime;
+            }
+
+            rotateVector += Vector3.right * forInput * sideRollsPower * Time.deltaTime;
+
+            rotateVector += Vector3.up * sideInput * sideRollsPower * Time.deltaTime;
+
+            transform.Rotate(rotateVector);
+        }
+    }
+    
+
+    public void Jump(Vector3 dir)
+    {
+        if (dir != Vector3.zero)
+        {
+            Debug.Log("jump");
+            rb.AddForce(dir * maxThrustPower, ForceMode.Impulse);
+        }
 
     }
+
+
 
     public void Thrust()
     {
@@ -358,6 +479,7 @@ public class Movement : MonoBehaviour
             return true;
 
     }
+
     public bool GettingContact()
     {
         bool isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);

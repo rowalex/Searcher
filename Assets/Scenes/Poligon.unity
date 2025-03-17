@@ -1725,7 +1725,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 759964208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2384,7 +2384,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1397451395}
   isVisible: 1
-  material: {fileID: 2100000, guid: 72ecd6c4221a1af4d9f8672c9ec60a91, type: 2}
+  material:
+  - {fileID: 2100000, guid: 72ecd6c4221a1af4d9f8672c9ec60a91, type: 2}
 --- !u!114 &987509958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2426,31 +2427,31 @@ MonoBehaviour:
   downForce: 50
   rightRollPowerKey: 101
   leftRollPowerKey: 113
-  sideRollsPower: 100
+  sideRollsPower: 170
   globalMovementMultiplyer: 1
   isMouseMoving: 0
   mouseSensitivityX: 400
   mouseSensitivityY: 200
   isThrusting: 0
-  thrustKey: 324
-  maxThrustPower: 5
+  thrustKey: 32
+  maxThrustPower: 10
   minThrustPower: 1
   thrusterDrag: 1
   isStabializing: 0
   stabilizationKey: 116
-  stablizationSpeedX: 50
-  stablizationSpeedZ: 50
+  stablizationSpeedX: 60
+  stablizationSpeedZ: 60
   x_value: 0
   z_value: 0
   isLandable: 0
   isLanding: 0
   landingKey: 114
   groundCheck: {fileID: 1187464275}
-  groundDistance: 1
+  groundDistance: 2
   groundMask:
     serializedVersion: 2
     m_Bits: 8
-  landingSpeed: 10
+  landingSpeed: 3
   rayDistanse: 5
   landPointFront: {fileID: 759964209}
   landPointRight: {fileID: 1495412908}
@@ -2464,7 +2465,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987509955}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6.51, z: 0}
+  m_LocalPosition: {x: 21.33, y: 33.57, z: 5.22}
   m_LocalScale: {x: 1.5, y: 1, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2486,8 +2487,8 @@ Rigidbody:
   m_GameObject: {fileID: 987509955}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 5
-  m_AngularDrag: 10
+  m_Drag: 0.5
+  m_AngularDrag: 3
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2503,7 +2504,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &987509962
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2836,7 +2837,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1039844168}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.5}
+  m_LocalPosition: {x: 0, y: 0, z: -0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3906,7 +3907,7 @@ MonoBehaviour:
   regenTime: 3
   finishUI: {fileID: 90808936}
   isFinish: 0
-  isEnemiesWork: 1
+  isEnemiesWork: 0
 --- !u!4 &1397451396
 Transform:
   m_ObjectHideFlags: 0
@@ -4059,7 +4060,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1495412907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0.2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4711,7 +4712,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1751806733}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: 0}
+  m_LocalPosition: {x: -0.2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
