@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - QuestManager
+  - Obstacle
+  - MovableObject
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - UI
   - Player
   - Triggers to capture
-  - 
+  - MovableObject
   - 
   - 
   - 

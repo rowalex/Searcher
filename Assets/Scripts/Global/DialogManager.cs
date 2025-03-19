@@ -62,6 +62,7 @@ public class DialogManager : MonoBehaviour
 
     public void OpenWindow()
     {
+        SoundManager.Instance.Play("low_bazz");
         dialogWindow.SetActive(true);
     }
     public void CloseWindow()

@@ -9,6 +9,7 @@ public class QuestTrigger : MonoBehaviour
     [SerializeField] public TriggerType triggerType;
     enum QuestType { AddQuest, FinishQuest };
     [SerializeField] QuestType questType;
+    [SerializeField] private GameObject triggerObject;
 
     enum Finishlvl { yes ,no}
     [SerializeField] Finishlvl isFinal; 
@@ -26,7 +27,7 @@ public class QuestTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (triggerType == TriggerType.onTrigger)
+        if (triggerType == TriggerType.onTrigger && other.gameObject == triggerObject)
         {
             switch (questType)
             {
@@ -40,8 +41,8 @@ public class QuestTrigger : MonoBehaviour
         QuestManager questManager = GameObject.Find("QuestManager").GetComponent<QuestManager>();
         foreach (Quest q in quests)
             questManager.AddQuest(q);
-        if (gameObject.GetComponent<MeshRenderer>()) gameObject.GetComponent<MeshRenderer>().enabled = false;
-        if (gameObject.GetComponent<MeshRenderer>()) gameObject.GetComponent<BoxCollider>().enabled = false;
+        //if (gameObject.GetComponent<MeshRenderer>()) gameObject.GetComponent<MeshRenderer>().enabled = false;
+        //if (gameObject.GetComponent<MeshRenderer>()) gameObject.GetComponent<BoxCollider>().enabled = false;
         this.enabled = false;
     }
     public void FinishQuest()
@@ -52,8 +53,8 @@ public class QuestTrigger : MonoBehaviour
             {
                 return;
             }
-        if(gameObject.GetComponent<MeshRenderer>()) gameObject.GetComponent<MeshRenderer>().enabled = false;
-        if(gameObject.GetComponent<MeshRenderer>()) gameObject.GetComponent<BoxCollider>().enabled = false;
+        //if(gameObject.GetComponent<MeshRenderer>()) gameObject.GetComponent<MeshRenderer>().enabled = false;
+        //if(gameObject.GetComponent<MeshRenderer>()) gameObject.GetComponent<BoxCollider>().enabled = false;
         this.enabled = false;
         if (isFinal == Finishlvl.yes) GameObject.Find("GameManager").GetComponent<GameManager>().isFinish = true;
     }

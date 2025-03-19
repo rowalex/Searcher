@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
     public Rigidbody rb;
 
     [Header("BasicMovement")]
+    public float forwardForce;
     public float sideForce;
     public KeyCode rightRollPowerKey = KeyCode.E;
     public KeyCode leftRollPowerKey = KeyCode.Q;
@@ -29,6 +30,7 @@ public class Movement : MonoBehaviour
     [Header("Landing")]    
     public Transform groundCheck;
     public float groundDistance;
+    public float landingLoweringPercent = 0.6f;
     public LayerMask groundMask;
     public float landingSpeed = 10f;
     public float rayDistanse;
@@ -55,12 +57,12 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        NewMovement();
+        if (gameManager.isAbleToMove) NewMovement();
     }
 
     private void NewInput()
     {
-        if (Input.GetKeyUp(thrustKey))
+        if (Input.GetKeyUp(thrustKey) && gameManager.isAbleToThrust)
         {
             Vector3 jump = Vector3.zero;
             
@@ -82,20 +84,21 @@ public class Movement : MonoBehaviour
         if (Physics.Raycast(groundCheck.position, -transform.up, out hit, groundDistance, groundMask))
         {
             rb.useGravity = false;
-            rb.drag = 2;
+            rb.drag = 4;
 
 
             Vector3 normal = hit.normal;
             float height = groundDistance;
             Vector3 target = hit.point + normal * height;
 
-            if ((transform.position - hit.point).magnitude >= groundDistance * 0.6f)
+            if ((transform.position - hit.point).magnitude >= groundDistance * landingLoweringPercent)
             {
-                rb.AddForce(-transform.up * landingSpeed * Time.deltaTime, ForceMode.Acceleration);
+                Debug.Log("lowering");
+                rb.AddForce(-transform.up * landingSpeed * Time.deltaTime);
             }
 
-            if (Physics.Raycast(landPointFront.position, -transform.up, out hitInfoFront, rayDistanse) && Physics.Raycast(landPointRight.position, -transform.up, out hitInfoRight, rayDistanse)
-            && Physics.Raycast(landPointLeft.position, -transform.up, out hitInfoLeft, rayDistanse) && Physics.Raycast(landPointBack.position, -transform.up, out hitInfoBack, rayDistanse))
+            if (Physics.Raycast(landPointFront.position, -transform.up, out hitInfoFront, rayDistanse, groundMask) && Physics.Raycast(landPointRight.position, -transform.up, out hitInfoRight, rayDistanse, groundMask)
+            && Physics.Raycast(landPointLeft.position, -transform.up, out hitInfoLeft, rayDistanse, groundMask) && Physics.Raycast(landPointBack.position, -transform.up, out hitInfoBack, rayDistanse, groundMask))
             {
                 Vector3 forwardVector = Vector3.Normalize(hitInfoFront.point - hitInfoBack.point);
                 Vector3 sideVector = Vector3.Normalize(hitInfoRight.point - hitInfoLeft.point);
@@ -104,20 +107,20 @@ public class Movement : MonoBehaviour
                 Stabilization(TranslateDegreceXIntoEulerXForMainBody(transform.eulerAngles.x + angleX), TranslateDegreceZIntoEulerZForMainBody(transform.eulerAngles.z + angleZ));
             }
 
-            float speedFor = 10f;
+            float speedFor = forwardForce;
             float speedRot = 100f;
 
             Vector3 dir = Vector3.Dot(transform.forward, normal) * normal;
             dir = transform.forward - dir;
 
-            transform.position += dir * forInput * Time.deltaTime * speedFor;
+            rb.AddForce( dir * forInput * speedFor);
             transform.Rotate(Vector3.up * sideInput * Time.deltaTime * speedRot);
 
         }
         else
         {
             rb.useGravity = true;
-            rb.drag = 0.5f;
+            rb.drag = 0f;
 
             Vector3 rotateVector = Vector3.zero;
 

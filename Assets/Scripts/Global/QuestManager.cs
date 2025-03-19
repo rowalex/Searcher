@@ -23,13 +23,13 @@ public class QuestManager : MonoBehaviour
 
     private void Update()
     {
-        if (quests.Count > 0)
+        if (quests.Count > 0 && !isQuest)
         {
             isQuest = true;
             ShowQuest();
 
         }
-        else
+        else if(quests.Count < 0)
         {
             isQuest = false;
             questWindow.SetActive(false);
@@ -40,6 +40,7 @@ public class QuestManager : MonoBehaviour
 
     public void ShowQuest()
     {
+        //SoundManager.Instance.Play("high_bazz");
         questName.text = quests[0].questName;
         questComment.text = quests[0].questComment;
         questWindow.SetActive(true);
@@ -53,6 +54,7 @@ public class QuestManager : MonoBehaviour
             {
                 finID.Add(q.questId);
                 quests.Remove(q);
+                isQuest = false;
                 return true;
             }
         return false;

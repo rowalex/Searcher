@@ -1,20 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
-using UnityEditor;
+using UnityEngine.Events;
 
-public class SentenceTrigger : MonoBehaviour
+public class ActionTrigger : MonoBehaviour
 {
-    [SerializeField] Sentence[] sent;
-
-    public enum TriggerType { onTrigger, onStart, onQuestFin, onQuestAdd , onCapture};
+    public enum TriggerType { onTrigger, onStart, onQuestFin, onQuestAdd, onCapture };
     [SerializeField] public TriggerType triggerType;
+
     [SerializeField] private GameObject triggerObject;
 
     public int questID;
 
     private QuestManager questManager;
+
+    public UnityEvent action;
 
     private void Start()
     {
@@ -22,7 +23,7 @@ public class SentenceTrigger : MonoBehaviour
 
         if (triggerType == TriggerType.onStart)
         {
-            SentSentence();
+            InvokeAction();
         }
     }
 
@@ -32,31 +33,31 @@ public class SentenceTrigger : MonoBehaviour
         {
             if (questManager.IsAddQuest(questID))
             {
-                SentSentence();
+                InvokeAction();
             }
         }
         if (triggerType == TriggerType.onQuestFin)
         {
             if (questManager.IsFinQuest(questID))
             {
-                SentSentence();
+                InvokeAction();
             }
         }
     }
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.gameObject.name + (other.gameObject == triggerObject));
         if (triggerType == TriggerType.onTrigger && other.gameObject == triggerObject)
         {
-            SentSentence();
+            InvokeAction();
         }
     }
 
 
-    public void SentSentence()
+    public void InvokeAction()
     {
-        DialogManager dialogManager = GameObject.Find("DialogManager").GetComponent<DialogManager>();
-        foreach (Sentence c in sent)
-            dialogManager.AddSentence(c);
+        Debug.Log("InvokeAction");
+        action?.Invoke();
         if (gameObject.GetComponent<MeshRenderer>()) gameObject.GetComponent<MeshRenderer>().enabled = false;
         if (gameObject.GetComponent<BoxCollider>()) gameObject.GetComponent<BoxCollider>().enabled = false;
         this.enabled = false;
@@ -65,7 +66,6 @@ public class SentenceTrigger : MonoBehaviour
 
     public void Capturing()
     {
-        SentSentence();
+        InvokeAction();
     }
 }
-
