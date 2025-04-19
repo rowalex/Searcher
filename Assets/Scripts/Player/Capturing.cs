@@ -5,27 +5,27 @@ using UnityEngine;
 
 public class Capturing : MonoBehaviour
 {
-    public bool isCapturing;
-    public bool isDistanceToCapture;
-    private LayerMask mask;
-    private KeyCode captureKey = KeyCode.F;
-    private float timeToCapture;
-    private float captureDistance;
-    private bool isAbleToCapture;
+    private GameManager gameManager;
+
+    [SerializeField] private bool isCapturing;
+    [SerializeField] private bool isDistanceToCapture;
+    [SerializeField] private float timeToCapture;
+    [SerializeField] private float captureDistance;
+    [SerializeField] private KeyCode captureKey = KeyCode.F;
+    [SerializeField] private LayerMask mask;
+
 
     private void Start()
     {
-        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        isAbleToCapture = gameManager.isAbleToCapture;
-        timeToCapture = gameManager.timeToCapture;
-        captureDistance = gameManager.captureDistance;
-        captureKey = gameManager.captureKey;
-        mask = gameManager.captureMask;
+        gameManager = GameManager.Instance;
     }
 
     private void Update()
     {
-        if (Physics.CheckSphere(transform.position, captureDistance, mask) && isAbleToCapture)
+        gameManager.SetCapturingUI(isCapturing && !gameManager.IsRewind());
+        gameManager.SetDistanceToCaptureBool(isDistanceToCapture && !gameManager.IsRewind());
+
+        if (Physics.CheckSphere(transform.position, captureDistance, mask))
         {
             isDistanceToCapture = true;
             if (Input.GetKeyDown(captureKey))
@@ -44,16 +44,18 @@ public class Capturing : MonoBehaviour
 
     public void Capture()
     {
-        Collider[] targets = Physics.OverlapSphere(transform.position, captureDistance, mask);
-
-        foreach (Collider target in targets)
+        if (isCapturing)
         {
-            foreach (QuestTrigger s in target.GetComponents<QuestTrigger>())
-                if (s.triggerType == QuestTrigger.TriggerType.onCapture) s.Capturing();
-            foreach (SentenceTrigger s in target.GetComponents<SentenceTrigger>())
-                if (s.triggerType == SentenceTrigger.TriggerType.onCapture) s.Capturing();
-        }
+            Collider[] targets = Physics.OverlapSphere(transform.position, captureDistance, mask);
 
+            foreach (Collider target in targets)
+            {
+                foreach (QuestTrigger s in target.GetComponents<QuestTrigger>())
+                    if (s.triggerType == QuestTrigger.TriggerType.onCapture) s.Capturing();
+                foreach (SentenceTrigger s in target.GetComponents<SentenceTrigger>())
+                    if (s.triggerType == SentenceTrigger.TriggerType.onCapture) s.Capturing();
+            }
+        }
         isCapturing = false;
     }
 }

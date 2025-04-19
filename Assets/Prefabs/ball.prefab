@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4317125997514895639}
   - component: {fileID: 8803440796580000906}
   - component: {fileID: 8098632579292619795}
+  - component: {fileID: 7765926718121750782}
   m_Layer: 8
   m_Name: ball
   m_TagString: MovableObject
@@ -35,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3823402776084303889
 MeshFilter:
@@ -174,3 +175,17 @@ MonoBehaviour:
   force: 10
   rb: {fileID: 8803440796580000906}
   sphereCollider: {fileID: 173220510127830843}
+  resetPos: {x: 0, y: 0, z: 0}
+--- !u!114 &7765926718121750782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2781659567208004938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19676bfb640afc64c9ea29eb03ebf060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movableObject: {fileID: 8098632579292619795}

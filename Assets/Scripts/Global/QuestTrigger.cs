@@ -56,7 +56,7 @@ public class QuestTrigger : MonoBehaviour
         //if(gameObject.GetComponent<MeshRenderer>()) gameObject.GetComponent<MeshRenderer>().enabled = false;
         //if(gameObject.GetComponent<MeshRenderer>()) gameObject.GetComponent<BoxCollider>().enabled = false;
         this.enabled = false;
-        if (isFinal == Finishlvl.yes) GameObject.Find("GameManager").GetComponent<GameManager>().isFinish = true;
+        if (isFinal == Finishlvl.yes) GameManager.Instance.isFinish = true;
     }
 
     public void Capturing()

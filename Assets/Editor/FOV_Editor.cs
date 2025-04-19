@@ -5,7 +5,6 @@ using UnityEngine;
 [CustomEditor(typeof(EnemiesFOV))]
 public class FOV_Editor : Editor
 {
-
     private void OnSceneGUI()
     {
         EnemiesFOV fov = (EnemiesFOV)target;

@@ -6,38 +6,45 @@ using UnityEngine.AI;
 
 public class Movement : MonoBehaviour
 {
+    
+
     [Header("MainReferences")]
     private GameManager gameManager;
     public Rigidbody rb;
 
     [Header("BasicMovement")]
-    public float forwardForce;
-    public float sideForce;
-    public KeyCode rightRollPowerKey = KeyCode.E;
-    public KeyCode leftRollPowerKey = KeyCode.Q;
-    public float sideRollsPower;
+    public bool isAbleToMove;
+    public bool isMoving;
+    [SerializeField] private float forwardForce;
+    [SerializeField] private float sideForce;
+    [SerializeField] private KeyCode rightRollPowerKey = KeyCode.E;
+    [SerializeField] private KeyCode leftRollPowerKey = KeyCode.Q;
+    [SerializeField] private float sideRollsPower;
 
-    [Header("MouseControl")]
+    [Header("Thrust")]    
+    public bool isAbleToThrust;
+    public float currFuel;
+    [SerializeField] private float maxFuel;
+    [SerializeField] private float thrustCost;
+    [SerializeField] private float refuelSpeed;
+    [SerializeField] private KeyCode thrustKey = KeyCode.Mouse1;
+    [SerializeField] private float maxThrustPower = 2;
 
-    [Header("Thrust")]
-    public KeyCode thrustKey = KeyCode.Mouse1;
-    public float maxThrustPower = 2;
-
-    [Header("Stabilization")]    
-    public float stablizationSpeedX;
-    public float stablizationSpeedZ;
+    [Header("Stabilization")]
+    [SerializeField] private float stablizationSpeedX;
+    [SerializeField] private float stablizationSpeedZ;
 
     [Header("Landing")]    
-    public Transform groundCheck;
-    public float groundDistance;
-    public float landingLoweringPercent = 0.6f;
-    public LayerMask groundMask;
-    public float landingSpeed = 10f;
-    public float rayDistanse;
-    public Transform landPointFront;
-    public Transform landPointRight;
-    public Transform landPointLeft;
-    public Transform landPointBack;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundDistance;
+    [SerializeField] private float landingLoweringPercent = 0.6f;
+    [SerializeField] private LayerMask groundMask;
+    [SerializeField] private float landingSpeed = 10f;
+    [SerializeField] private float rayDistanse;
+    [SerializeField] private Transform landPointFront;
+    [SerializeField] private Transform landPointRight;
+    [SerializeField] private Transform landPointLeft;
+    [SerializeField] private Transform landPointBack;
 
     RaycastHit hitInfoFront;
     RaycastHit hitInfoRight;
@@ -46,23 +53,36 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = GameManager.Instance;
         rb.useGravity = true;
+        currFuel = maxFuel;
+
+        gameManager.SetThrustingUI(isAbleToThrust);
+
     }
 
     private void Update()
     {
-        NewInput();
+        gameManager.SetThrustSliderValue(currFuel / maxFuel);
+
+        if (!gameManager.IsRewind() && isAbleToMove)
+        {
+            NewInput();
+            ThrustManager();
+        }
     }
 
     void FixedUpdate()
     {
-        if (gameManager.isAbleToMove) NewMovement();
+        if (!gameManager.IsRewind() && isAbleToMove)
+        {
+            NewMovement();
+        }
     }
 
     private void NewInput()
     {
-        if (Input.GetKeyUp(thrustKey) && gameManager.isAbleToThrust)
+        if (Input.GetKeyUp(thrustKey) && isAbleToThrust)
         {
             Vector3 jump = Vector3.zero;
             
@@ -145,13 +165,30 @@ public class Movement : MonoBehaviour
     {
         if (dir != Vector3.zero)
         {
-            if (gameManager.FuelReduce())
+            if (FuelReduce())
             {
                 Debug.Log("jump");
                 rb.AddForce(dir * maxThrustPower, ForceMode.Impulse);
             }
         }
 
+    }
+    public bool FuelReduce()
+    {
+        if (currFuel >= thrustCost)
+        {
+            currFuel -= thrustCost;
+            return true;
+        }
+        else return false;
+    }
+
+    private void ThrustManager()
+    {
+        if (currFuel < maxFuel)
+            currFuel += refuelSpeed * Time.deltaTime;
+        else
+            currFuel = maxFuel;
     }
 
     #region stabilization_Hell

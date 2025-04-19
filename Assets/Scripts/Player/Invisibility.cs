@@ -5,30 +5,32 @@ using UnityEngine;
 
 public class Invisibility : MonoBehaviour
 {
-    public GameManager gameManager;
-
-    public bool isVisible = true;
-
-    public Material[] material;
-
-    private float inVisTimer;
-
+    private GameManager gameManager;
+    private Movement movement;
+    [SerializeField] public bool isVisible = true;
+    [SerializeField] private Material[] material;
     private float timer;
+    [SerializeField] private bool isAbleToInvis;
+    [SerializeField] private bool isInvis;
+    [SerializeField] private float timeToInvis;
+    public float alpha = 1;
 
     private void Start()
     {
-        inVisTimer = gameManager.timeToInvis;
+        gameManager = GameManager.Instance;
+        movement = GetComponent<Movement>();
     }
     private void Update()
     {
-        if (gameManager.isAbleToInvis)
+        bool isLanded = movement.GettingContact() && !movement.isMoving; 
+
+        if (isAbleToInvis && !gameManager.IsRewind())
         {
-
-
-            if (gameManager.isLanded)
+            
+            if (isLanded)
             {
                 timer += Time.deltaTime;
-                if (timer >= inVisTimer)
+                if (timer >= timeToInvis)
                     isVisible = false;
                 else
                     isVisible = true;
@@ -38,16 +40,21 @@ public class Invisibility : MonoBehaviour
                 timer = 0;
                 isVisible = true;
             }
+
+            alpha = (timeToInvis - timer) / timeToInvis < 0 ? 0 : (timeToInvis - timer) / timeToInvis;
         }
+
+        SetInvis(alpha);
+    }
+
+    private void SetInvis(float alpha)
+    {
         foreach (Material a in material)
         {       
             Color col = a.color;
-            col.a = (inVisTimer - timer) / inVisTimer < 0 ? 0 : (inVisTimer - timer) / inVisTimer;
+            col.a = alpha;
             a.color = col;
         }
-        
     }
-
-
 
 }

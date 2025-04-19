@@ -5,45 +5,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class EnemiesFields
-{
-    private Vector3 lastTargetPosition;
-    private bool isFollowPoint;
-    private float hitTimer;
-    private int pointIndex;
-    private List<Vector3> trackPositions;
-    private Vector3 pos;
-    private Quaternion rot;
-
-    public EnemiesFields(EnemiesAI obj)
-    {
-        lastTargetPosition = obj.lastTargetPosition;
-        isFollowPoint = obj.isFollowPoint;
-        hitTimer = obj.hitTimer;
-        pointIndex = obj.pointIndex;
-        trackPositions = new List<Vector3>(obj.trackPositions);
-        pos = obj.transform.position;
-        rot = obj.transform.rotation;
-    }
-
-    public void GetField(EnemiesAI obj)
-    {
-        obj.lastTargetPosition = lastTargetPosition;
-        obj.isFollowPoint = isFollowPoint;
-        obj.hitTimer = hitTimer;
-        obj.pointIndex = pointIndex;
-        obj.trackPositions = new List<Vector3>(trackPositions);
-        obj.transform.position = pos;
-        obj.transform.rotation = rot;
-    }
-}
-
-
 
 public class EnemiesAI : MonoBehaviour
 {
     private GameManager gameManager;
-    private List<EnemiesFields> fields;
 
     private EnemiesFOV fov;
     private Rigidbody rb;
@@ -71,8 +36,7 @@ public class EnemiesAI : MonoBehaviour
 
     void Start()
     {
-        fields = new List<EnemiesFields>();
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager = GameManager.Instance;
         fov = GetComponent<EnemiesFOV>();
         rb = GetComponent<Rigidbody>();
         isFollowPoint = false;
@@ -81,10 +45,10 @@ public class EnemiesAI : MonoBehaviour
 
     void FixedUpdate()
     {
-        isWork = GameObject.Find("GameManager").GetComponent<GameManager>().isEnemiesWork;
+        isWork = gameManager.isEnemiesWork;
         if (isWork)
         {
-            if (!gameManager.isRewind)
+            if (!gameManager.IsRewind())
             {
                 if (fov.canSeeTarget)
                 {
@@ -110,7 +74,7 @@ public class EnemiesAI : MonoBehaviour
                     LookAtPoint(lastTargetPosition);
                 }
 
-                if (!isFollowPoint)
+                if (!isFollowPoint && patrolPoints.Length > 1)
                 {
                     if (trackPositions.Count == 0)
                     {
@@ -124,16 +88,6 @@ public class EnemiesAI : MonoBehaviour
                         GoToPoint(trackPositions[trackPositions.Count - 1]);
                         if (CheckPoint(trackPositions[trackPositions.Count - 1])) trackPositions.RemoveAt(trackPositions.Count - 1);
                     }
-                }
-                if (fields.Count > (gameManager.timeForRewind / Time.fixedDeltaTime) - 1) fields.RemoveAt(fields.Count - 1);
-                fields.Insert(0, new EnemiesFields(this));
-            }
-            else
-            {
-                if (fields.Count > 0)
-                {
-                    fields[0].GetField(this);
-                    fields.RemoveAt(0);
                 }
             }
         }

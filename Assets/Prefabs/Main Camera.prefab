@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5858310486544190310}
   - component: {fileID: 5345163682335995993}
   - component: {fileID: 1795524137462684071}
-  - component: {fileID: 6038306849314825461}
+  - component: {fileID: 2083478312482593667}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &5858310486544190310
 Camera:
@@ -107,9 +107,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  offset: {x: 0, y: 2, z: -5}
+  player: {fileID: 0}
+  horDistance: 0
+  vertDistance: 0
   speed: 0.08
---- !u!114 &6038306849314825461
+  lookOnVelocity: 0
+--- !u!114 &2083478312482593667
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,9 +121,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5861951759122560706}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cbdbb51c8f4a4241910e8602971102e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7806a00a2ec99a54686b8cd0e8ab8646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAbleToRewind: 0
-  isRewind: 0
-  timer: 0
+  cameraScript: {fileID: 1795524137462684071}

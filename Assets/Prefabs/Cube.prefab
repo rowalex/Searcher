@@ -73,9 +73,9 @@ GameObject:
   - component: {fileID: 8929134313842899919}
   - component: {fileID: 3356212470883223506}
   - component: {fileID: 472029943507737183}
-  - component: {fileID: 2828237971484227849}
   - component: {fileID: 3800459257692266153}
   - component: {fileID: 1704549212623484032}
+  - component: {fileID: 8159484654553422758}
   - component: {fileID: 3047359624020658605}
   - component: {fileID: 4094856269763357396}
   m_Layer: 6
@@ -121,11 +121,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 4094856269763357396}
+  isAbleToMove: 1
+  isMoving: 0
   forwardForce: 30
   sideForce: 50
   rightRollPowerKey: 101
   leftRollPowerKey: 113
   sideRollsPower: 170
+  isAbleToThrust: 1
+  currFuel: 0
+  maxFuel: 10
+  thrustCost: 10
+  refuelSpeed: 2
   thrustKey: 32
   maxThrustPower: 10
   stablizationSpeedX: 60
@@ -154,33 +161,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df9471b4de5f6b4fa1de84a7630039d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAbleToBeHit: 0
+  regenTimer: 0
+  regenTime: 3
   movementSpeed: 0
   movementVector: {x: 0, y: 0, z: 0}
   hitValue: 20
   timer: 0
   immunityWindow: 1
   hpAmount: 3
+  hpMax: 3
   pickUpVector: {x: 2, y: 2}
   pickUpDistance: 3
   pickUpMask:
     serializedVersion: 2
     m_Bits: 256
   currPickUp: {fileID: 0}
---- !u!114 &2828237971484227849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1233242513899980291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cbdbb51c8f4a4241910e8602971102e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isAbleToRewind: 0
-  isRewind: 0
-  timer: 0
 --- !u!114 &3800459257692266153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +191,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCapturing: 0
   isDistanceToCapture: 0
+  timeToCapture: 1
+  captureDistance: 2
+  captureKey: 102
+  mask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &1704549212623484032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +209,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a018b6047a44fe479fee35c18a186eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
   isVisible: 1
   material:
   - {fileID: 2100000, guid: 67de81d90d50776498f88fb952cdf464, type: 2}
@@ -216,6 +217,26 @@ MonoBehaviour:
   - {fileID: 2100000, guid: a333756355f8d14479e2091624dd1d92, type: 2}
   - {fileID: 2100000, guid: bc482a882b927bb4798318b33a19d9bc, type: 2}
   - {fileID: 2100000, guid: 62095afd50bfbcb49a1597252d8c9614, type: 2}
+  isAbleToInvis: 1
+  isInvis: 0
+  timeToInvis: 2
+  alpha: 1
+--- !u!114 &8159484654553422758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233242513899980291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05e419170532d446babf6df7f108645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseInfo: {fileID: 472029943507737183}
+  movement: {fileID: 3356212470883223506}
+  capturing: {fileID: 3800459257692266153}
+  invisibility: {fileID: 1704549212623484032}
 --- !u!65 &3047359624020658605
 BoxCollider:
   m_ObjectHideFlags: 0

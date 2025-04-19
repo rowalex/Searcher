@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 346808384224657162}
   - component: {fileID: 3302487350407062965}
   - component: {fileID: 8980807071330446447}
+  - component: {fileID: 7965573198183888819}
   - component: {fileID: 6781368656329652733}
-  - component: {fileID: -740720357952991824}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Untagged
@@ -130,9 +130,7 @@ MonoBehaviour:
   chargeSpeed: 150
   checkDistance: 1
   hitTimer: 1.5
-  patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  patrolPoints: []
   pointIndex: 0
   trackPositions: []
 --- !u!114 &8980807071330446447
@@ -157,6 +155,20 @@ MonoBehaviour:
     m_Bits: 8
   canSeeTarget: 0
   target: {fileID: 0}
+--- !u!114 &7965573198183888819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2937851581355208183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35899068324558f45a456250e448be17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ai: {fileID: 3302487350407062965}
+  fov: {fileID: 8980807071330446447}
 --- !u!54 &6781368656329652733
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -184,21 +196,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-740720357952991824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2937851581355208183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8c4449a43094394f93225293fe08701, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prevPos: {x: 0, y: 0, z: 0}
-  nextPos: {x: 0, y: 0, z: 0}
-  movementSpeed: 0
 --- !u!1 &5405582230419085821
 GameObject:
   m_ObjectHideFlags: 0
