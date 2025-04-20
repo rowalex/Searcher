@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class EnemiesFOV : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class EnemiesFOV : MonoBehaviour
     public bool canSeeTarget = false;
 
     public Transform target;
+
+
+    [SerializeField] private bool showVision;
+    [SerializeField] private Light visionArea;
 
     void Start()
     {
@@ -56,5 +61,12 @@ public class EnemiesFOV : MonoBehaviour
         }
         else if (canSeeTarget)
             canSeeTarget = false;
+    }
+
+    public void SetVisionLight(bool isVisible)
+    {
+        visionArea.enabled = isVisible;
+        visionArea.range = viewRadius;
+        visionArea.spotAngle = viewAngle;
     }
 }

@@ -34,6 +34,7 @@ public class PlayerTimeBody : ITimeBody
     protected override void OnClear()
     {
         fields.Clear();
+        fields.TrimExcess();
     }
 
 }

@@ -11,7 +11,6 @@ public class Invisibility : MonoBehaviour
     [SerializeField] private Material[] material;
     private float timer;
     [SerializeField] private bool isAbleToInvis;
-    [SerializeField] private bool isInvis;
     [SerializeField] private float timeToInvis;
     public float alpha = 1;
 
@@ -22,11 +21,11 @@ public class Invisibility : MonoBehaviour
     }
     private void Update()
     {
-        bool isLanded = movement.GettingContact() && !movement.isMoving; 
+        bool isLanded = movement.GettingContact() && !movement.isMoving;
 
         if (isAbleToInvis && !gameManager.IsRewind())
         {
-            
+
             if (isLanded)
             {
                 timer += Time.deltaTime;
@@ -42,6 +41,11 @@ public class Invisibility : MonoBehaviour
             }
 
             alpha = (timeToInvis - timer) / timeToInvis < 0 ? 0 : (timeToInvis - timer) / timeToInvis;
+        }
+        else
+        {
+            alpha = 1;
+            isVisible = true;
         }
 
         SetInvis(alpha);

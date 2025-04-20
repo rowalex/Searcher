@@ -32,6 +32,7 @@ public class CameraTimeBody : ITimeBody
     protected override void OnClear()
     {
         fields.Clear();
+        fields.TrimExcess();
     }
 
 }

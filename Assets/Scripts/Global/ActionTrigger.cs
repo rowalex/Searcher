@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class ActionTrigger : MonoBehaviour
 {
-    public enum TriggerType { onTrigger, onStart, onQuestFin, onQuestAdd, onCapture };
+    public enum TriggerType { onTrigger, onStart, onQuestFin, onQuestAdd, onCapture, onInteract};
     [SerializeField] public TriggerType triggerType;
 
     [SerializeField] private GameObject triggerObject;
@@ -61,11 +61,5 @@ public class ActionTrigger : MonoBehaviour
         if (gameObject.GetComponent<MeshRenderer>()) gameObject.GetComponent<MeshRenderer>().enabled = false;
         if (gameObject.GetComponent<BoxCollider>()) gameObject.GetComponent<BoxCollider>().enabled = false;
         this.enabled = false;
-    }
-
-
-    public void Capturing()
-    {
-        InvokeAction();
     }
 }

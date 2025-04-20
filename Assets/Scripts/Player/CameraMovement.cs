@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
@@ -19,30 +20,41 @@ public class CameraMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            if (lookOnVelocity)
-                lookOnVelocity = false;
-            else lookOnVelocity = true;
+            lookOnVelocity = !lookOnVelocity;
         }
     }
 
     private void FixedUpdate()
     {
         if (!RewindManager.Instance.isRewind)
+        {
+            Vector3 toPos;
             if (lookOnVelocity)
             {
                 Vector3 forward = player.movementVector.magnitude > 0.15f ? player.movementVector : target.transform.forward;
                 forward.y = 0;
                 forward.Normalize();
-                Vector3 targetPosition = target.transform.position - forward * horDistance + Vector3.up * vertDistance;
-                transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, speed);
+                toPos = target.transform.position - forward * horDistance + Vector3.up * vertDistance;
                 transform.LookAt(player.transform.position);
 
             }
             else
             {
-                Vector3 toPos = target.transform.position + (target.transform.rotation * new Vector3(0, vertDistance, -horDistance));
-                transform.position = Vector3.SmoothDamp(transform.position, toPos, ref velocity, speed);
+                toPos = target.transform.position + (target.transform.rotation * new Vector3(0, vertDistance, -horDistance));
                 transform.LookAt(target.transform, target.transform.up);
             }
+
+            // Raycasting from target to camera
+            RaycastHit hit;
+            Vector3 direction = toPos - target.transform.position;
+            float distance = direction.magnitude;
+
+            if (Physics.Raycast(target.transform.position, direction.normalized, out hit, distance) && !lookOnVelocity)
+            {
+                toPos = hit.point - direction.normalized * 0.5f;
+            }
+
+            transform.position = Vector3.SmoothDamp(transform.position, toPos, ref velocity, speed);
+        }
     }
 }

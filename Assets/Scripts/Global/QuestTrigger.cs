@@ -5,7 +5,7 @@ using UnityEngine;
 public class QuestTrigger : MonoBehaviour
 {
     [SerializeField] Quest[] quests;
-    public enum TriggerType {onTrigger, onStart, onCapture};
+    public enum TriggerType {onTrigger, onStart, onCapture, onInteract};
     [SerializeField] public TriggerType triggerType;
     enum QuestType { AddQuest, FinishQuest };
     [SerializeField] QuestType questType;
@@ -59,7 +59,7 @@ public class QuestTrigger : MonoBehaviour
         if (isFinal == Finishlvl.yes) GameManager.Instance.isFinish = true;
     }
 
-    public void Capturing()
+    public void QuestInvoko()
     {
         switch (questType)
         {

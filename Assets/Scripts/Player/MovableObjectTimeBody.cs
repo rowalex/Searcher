@@ -31,6 +31,7 @@ public class MovableObjectTimeBody : ITimeBody
     protected override void OnClear()
     {
         fields.Clear();
+        fields.TrimExcess();
     }
 
 }

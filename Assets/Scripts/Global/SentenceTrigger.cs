@@ -8,7 +8,7 @@ public class SentenceTrigger : MonoBehaviour
 {
     [SerializeField] Sentence[] sent;
 
-    public enum TriggerType { onTrigger, onStart, onQuestFin, onQuestAdd , onCapture};
+    public enum TriggerType { onTrigger, onStart, onQuestFin, onQuestAdd , onCapture, onInteract};
     [SerializeField] public TriggerType triggerType;
     [SerializeField] private GameObject triggerObject;
 
@@ -60,12 +60,6 @@ public class SentenceTrigger : MonoBehaviour
         if (gameObject.GetComponent<MeshRenderer>()) gameObject.GetComponent<MeshRenderer>().enabled = false;
         if (gameObject.GetComponent<BoxCollider>()) gameObject.GetComponent<BoxCollider>().enabled = false;
         this.enabled = false;
-    }
-
-
-    public void Capturing()
-    {
-        SentSentence();
     }
 }
 

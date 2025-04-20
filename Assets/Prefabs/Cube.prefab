@@ -194,9 +194,12 @@ MonoBehaviour:
   timeToCapture: 1
   captureDistance: 2
   captureKey: 102
-  mask:
+  captureMask:
     serializedVersion: 2
     m_Bits: 128
+  interactMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &1704549212623484032
 MonoBehaviour:
   m_ObjectHideFlags: 0

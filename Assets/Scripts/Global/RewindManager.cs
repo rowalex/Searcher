@@ -26,11 +26,17 @@ public class RewindManager : MonoBehaviour
 
     public void ClearInfo()
     {
+        time = 0;
         OnClear?.Invoke();
     }
 
     public void FixedUpdate()
     {
+        if (time == 0)
+        {
+            isRewind = false;
+        }
+
         if (isRewind && time > 0)
         {
             time--;
@@ -46,11 +52,11 @@ public class RewindManager : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKey(buttonToRewind))
+        if (Input.GetKeyDown(buttonToRewind))
         {
             isRewind = true;
         }
-        else
+        else if (Input.GetKeyUp(buttonToRewind))
         {
             isRewind = false;
         }

@@ -33,6 +33,7 @@ public class EnemyTimeBody : ITimeBody
     protected override void OnClear()
     {
         fields.Clear();
+        fields.TrimExcess();
     }
 
 }

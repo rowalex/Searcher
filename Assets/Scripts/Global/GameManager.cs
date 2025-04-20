@@ -139,4 +139,14 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(name);
     }
 
+    public void SetEnemyFovVisible(bool isVisible)
+    {
+        var mass = FindObjectsOfType<EnemiesFOV>();
+        Debug.Log(mass.Length);
+        foreach(EnemiesFOV en in mass)
+        {
+            en.SetVisionLight(isVisible);
+        }
+    }
+
 }

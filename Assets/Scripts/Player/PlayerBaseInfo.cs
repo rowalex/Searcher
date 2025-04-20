@@ -32,6 +32,7 @@ public class PlayerBaseInfo : MonoBehaviour
         nextPos = transform.position;
         gameManager = GameManager.Instance;
         gameManager.SetHPUI(isAbleToBeHit);
+        hpAmount = hpMax;
     }
 
     private void FixedUpdate()
@@ -55,8 +56,10 @@ public class PlayerBaseInfo : MonoBehaviour
             gameObject.GetComponent<Rigidbody>().AddForce(collision.impulse.normalized * 10, ForceMode.Impulse);
             return;
         }
-        Debug.Log(collision.impulse.magnitude);
-        if (collision.impulse.magnitude > hitValue && timer < 0)
+        var impact = collision.impulse.magnitude;
+        impact *= collision.gameObject.GetComponent<EnemiesAI>() ? 5 : 1;
+        Debug.Log(impact);
+        if (impact > hitValue && timer < 0)
         {
             timer = immunityWindow;
         }
