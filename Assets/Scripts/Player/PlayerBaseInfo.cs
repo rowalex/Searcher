@@ -25,7 +25,9 @@ public class PlayerBaseInfo : MonoBehaviour
     [SerializeField] private Vector2 pickUpVector;
     [SerializeField] private float pickUpDistance;
     [SerializeField] private LayerMask pickUpMask;
-    [SerializeField] private GameObject currPickUp;
+    [SerializeField] public bool isPickUp;
+    [SerializeField] private GameObject idle;
+    [SerializeField] private GameObject pickUp;
 
     private void Start()
     {
@@ -85,6 +87,9 @@ public class PlayerBaseInfo : MonoBehaviour
         }
         
         PickUpManager();
+
+        idle.SetActive(!isPickUp);
+        pickUp.SetActive(isPickUp);
     }
 
 
@@ -112,14 +117,9 @@ public class PlayerBaseInfo : MonoBehaviour
         if (Physics.CheckSphere(transform.position, pickUpDistance, pickUpMask) && Input.GetKeyDown(KeyCode.F))
         {
             Collider[] targets = Physics.OverlapSphere(transform.position, pickUpDistance, pickUpMask);
-            if (currPickUp != null)
-            {
-                currPickUp.GetComponent<MovableObject>().InteractObject(gameObject);
-                currPickUp = null;
-                return;
-            }
-            currPickUp = targets[0].gameObject;
-            currPickUp.GetComponent<MovableObject>().InteractObject(gameObject);
+            var target = targets[0].gameObject.GetComponent<MovableObject>();
+            target.InteractObject(gameObject);
+            isPickUp = target.isPickedUp;
         }
     }
 

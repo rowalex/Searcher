@@ -63,4 +63,9 @@ public class RewindManager : MonoBehaviour
         GameManager.Instance.SetRewindUI(isRewind);
     }
 
+    public void SetRewindState(bool state)
+    {
+        isRewind = state;
+    }
+
 }

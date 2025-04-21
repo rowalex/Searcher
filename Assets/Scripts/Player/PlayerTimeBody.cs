@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerTimeBody : ITimeBody
@@ -51,6 +52,7 @@ class PlayerFields
     private float drag;
     private bool isAbleToMove;
     private float alpha;
+    private bool isPickUp;
 
     public PlayerFields(PlayerBaseInfo info, Movement movement, Capturing capturing, Invisibility invisibility)
     {
@@ -64,6 +66,7 @@ class PlayerFields
         this.drag = movement.rb.drag;
         this.isAbleToMove = movement.isAbleToMove;
         this.alpha = invisibility.alpha;
+        this.isPickUp = info.isPickUp;
     }
 
     public void GetFields(PlayerBaseInfo info, Movement movement, Capturing capturing, Invisibility invisibility)
@@ -78,5 +81,6 @@ class PlayerFields
         movement.rb.drag = this.drag;
         movement.isAbleToMove= this.isAbleToMove;
         invisibility.alpha = this.alpha;
+        info.isPickUp= this.isPickUp;
     }
 }
