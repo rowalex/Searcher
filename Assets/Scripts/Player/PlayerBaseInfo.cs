@@ -22,12 +22,6 @@ public class PlayerBaseInfo : MonoBehaviour
     [SerializeField] private float immunityWindow = 1;
     [SerializeField] public int hpAmount;
     [SerializeField] private int hpMax = 3;
-    [SerializeField] private Vector2 pickUpVector;
-    [SerializeField] private float pickUpDistance;
-    [SerializeField] private LayerMask pickUpMask;
-    [SerializeField] public bool isPickUp;
-    [SerializeField] private GameObject idle;
-    [SerializeField] private GameObject pickUp;
 
     private void Start()
     {
@@ -63,7 +57,11 @@ public class PlayerBaseInfo : MonoBehaviour
         Debug.Log(impact);
         if (impact > hitValue && timer < 0)
         {
+            SoundManager.Instance.Play("strong_hit");
             timer = immunityWindow;
+        }else if (impact > 4)
+        {
+            SoundManager.Instance.Play("normal_hit");
         }
     }
 
@@ -85,13 +83,7 @@ public class PlayerBaseInfo : MonoBehaviour
             HPManager();
 
         }
-        
-        PickUpManager();
-
-        idle.SetActive(!isPickUp);
-        pickUp.SetActive(isPickUp);
     }
-
 
     private void HPManager()
     {
@@ -108,26 +100,7 @@ public class PlayerBaseInfo : MonoBehaviour
                 hpAmount++;
                 regenTimer = regenTime;
             }
-
         }
-    }
-
-    private void PickUpManager()
-    {
-        if (Physics.CheckSphere(transform.position, pickUpDistance, pickUpMask) && Input.GetKeyDown(KeyCode.F))
-        {
-            Collider[] targets = Physics.OverlapSphere(transform.position, pickUpDistance, pickUpMask);
-            var target = targets[0].gameObject.GetComponent<MovableObject>();
-            target.InteractObject(gameObject);
-            isPickUp = target.isPickedUp;
-        }
-    }
-
-
-    public Vector3 GetPickedUpObjectPosition()
-    {
-        Vector3 pos = transform.position + transform.forward * pickUpVector.x + transform.up * pickUpVector.y;
-        return pos;
     }
 
     public void DisablePlayer()

@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         gameUI = GameUI.Instance;
+
+
     }
 
     public void SetRewindUI(bool isRewind)
@@ -88,6 +90,10 @@ public class GameManager : MonoBehaviour
     {
         gameUI.SetThrustSliderUI(value);
     }
+    public void SetAbleToRewind(bool state)
+    {
+        RewindManager.Instance.isAbleToRewind = state;
+    }
 
     void Update()
     {
@@ -130,13 +136,13 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
-    public void TurnGameOn()
+    public void TurnGameState(bool state)
     {
-        isPause = false;
+        isPause = state;
     }
     public void GoToScene(string name)
     {
-        SceneManager.LoadScene(name);
+        SceneManager.LoadScene(name, LoadSceneMode.Single);
     }
 
     public void SetEnemyFovVisible(bool isVisible)
@@ -148,5 +154,8 @@ public class GameManager : MonoBehaviour
             en.SetVisionLight(isVisible);
         }
     }
-
+    public void SetMovementState(bool work)
+    {
+        FindFirstObjectByType<Movement>().isAbleToMove = work;
+    }
 }

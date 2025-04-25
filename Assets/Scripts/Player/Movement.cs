@@ -167,6 +167,7 @@ public class Movement : MonoBehaviour
         {
             if (FuelReduce())
             {
+                SoundManager.Instance.Play("jump");
                 Debug.Log("jump");
                 rb.AddForce(dir * maxThrustPower, ForceMode.Impulse);
             }

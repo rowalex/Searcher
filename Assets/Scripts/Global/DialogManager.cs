@@ -11,6 +11,7 @@ public class DialogManager : MonoBehaviour
     public GameObject dialogWindow;
     public Text dialogSentence;
     public Text dialogName;
+    public Image image;
 
     public float dialogTimer = 0;
     public bool isDialog = false;
@@ -57,6 +58,7 @@ public class DialogManager : MonoBehaviour
         dialogSentence.text = sentences[0].sentence;
         dialogName.text = sentences[0].name;
         dialogTimer = sentences[0].time;
+        image.sprite = sentences[0].image;
         sentences.RemoveAt(0);
     }
 

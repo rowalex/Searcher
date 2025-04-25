@@ -17,6 +17,9 @@ public class RewindManager : MonoBehaviour
     public Action OnSaveInfo;
     public Action OnClear;
 
+    public bool isAbleToRewind = true;
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -52,7 +55,7 @@ public class RewindManager : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(buttonToRewind))
+        if (Input.GetKeyDown(buttonToRewind) && isAbleToRewind)
         {
             isRewind = true;
         }
@@ -65,7 +68,7 @@ public class RewindManager : MonoBehaviour
 
     public void SetRewindState(bool state)
     {
-        isRewind = state;
+        isRewind = state && isAbleToRewind;
     }
 
 }

@@ -10,7 +10,7 @@ public class MovableObject : MonoBehaviour
 
     [SerializeField] public bool isPickedUp = false;
 
-    [SerializeField] public PlayerBaseInfo player;
+    [SerializeField] public Capturing player;
 
     [SerializeField] private float force;
 
@@ -46,7 +46,7 @@ public class MovableObject : MonoBehaviour
     public void InteractObject(GameObject player)
     {
         rb.isKinematic = false;
-        this.player = player.GetComponent<PlayerBaseInfo>();
+        this.player = player.GetComponent<Capturing>();
         if (isPickedUp)
         {
             sphereCollider.enabled = true;

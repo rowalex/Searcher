@@ -62,6 +62,66 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+  - name: normal_hit
+    clip: {fileID: 8300000, guid: 43ad8331ff7ffea49af43c28b9932cfe, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: weak_hit
+    clip: {fileID: 8300000, guid: 43ad8331ff7ffea49af43c28b9932cfe, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 0
+  - name: strong_hit
+    clip: {fileID: 8300000, guid: 43ad8331ff7ffea49af43c28b9932cfe, type: 3}
+    volume: 1.5
+    pitch: 1
+    loop: 0
+  - name: tree
+    clip: {fileID: 8300000, guid: 4e17306dc386cee40a59b4f9f9925041, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: jump
+    clip: {fileID: 8300000, guid: 98cf2a7d4e703a940b569d5634fba531, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: tree_crack1
+    clip: {fileID: 8300000, guid: 52c79ca4fc7e89c47a63268cee88fabd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: tree_crack2
+    clip: {fileID: 8300000, guid: dc631f23bc3a2f0459b1230932d6a1fb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: forest_background
+    clip: {fileID: 8300000, guid: 6f113dca733e37e4980da681f7c5aae0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: wind_background
+    clip: {fileID: 8300000, guid: 131d16268af9cec419b1ed856565f2fd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: wind_background
+    clip: {fileID: 8300000, guid: 131d16268af9cec419b1ed856565f2fd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: minimal_tech
+    clip: {fileID: 8300000, guid: 2364738e04c9c82409bbe9dc60e24352, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 1
+  - name: menu
+    clip: {fileID: 8300000, guid: be8d8ed9a5ffa4e47adb0d119b7535bf, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 1
   player: {fileID: 6317579404617237566}
   backplayer: {fileID: 2231240587692932452}
   global_volume: 1

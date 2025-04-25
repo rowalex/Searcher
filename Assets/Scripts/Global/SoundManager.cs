@@ -43,6 +43,15 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void StopF()
+    {
+        player.Stop();
+    }
+    public void StopB()
+    {
+         backplayer.Stop();
+    }
+
     public void Play(string name)
     {
         MusicFile curfile = new MusicFile();

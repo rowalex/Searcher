@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df9471b4de5f6b4fa1de84a7630039d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAbleToBeHit: 0
+  isAbleToBeHit: 1
   regenTimer: 0
   regenTime: 3
   movementSpeed: 0
@@ -173,14 +173,6 @@ MonoBehaviour:
   immunityWindow: 1
   hpAmount: 3
   hpMax: 3
-  pickUpVector: {x: 2, y: 2}
-  pickUpDistance: 3
-  pickUpMask:
-    serializedVersion: 2
-    m_Bits: 256
-  isPickUp: 0
-  idle: {fileID: 6143557540258078933}
-  pickUp: {fileID: 2435903173829378685}
 --- !u!114 &3800459257692266153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +196,14 @@ MonoBehaviour:
   interactMask:
     serializedVersion: 2
     m_Bits: 512
+  pickUpVector: {x: 2, y: 2}
+  pickUpDistance: 2
+  pickUpMask:
+    serializedVersion: 2
+    m_Bits: 256
+  isPickUp: 0
+  idle: {fileID: 6143557540258078933}
+  pickUp: {fileID: 2435903173829378685}
 --- !u!114 &1704549212623484032
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -66,7 +66,7 @@ class PlayerFields
         this.drag = movement.rb.drag;
         this.isAbleToMove = movement.isAbleToMove;
         this.alpha = invisibility.alpha;
-        this.isPickUp = info.isPickUp;
+        this.isPickUp = capturing.isPickUp;
     }
 
     public void GetFields(PlayerBaseInfo info, Movement movement, Capturing capturing, Invisibility invisibility)
@@ -81,6 +81,6 @@ class PlayerFields
         movement.rb.drag = this.drag;
         movement.isAbleToMove= this.isAbleToMove;
         invisibility.alpha = this.alpha;
-        info.isPickUp= this.isPickUp;
+        capturing.isPickUp= this.isPickUp;
     }
 }
