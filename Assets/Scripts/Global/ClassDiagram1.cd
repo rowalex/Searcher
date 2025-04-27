@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EnemiesAI" Collapsed="true">
+    <Position X="37" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AMCAABAAAiEAkkEEAIAgAAABAAAAAAAIAAEgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\EnemiesAI.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="gameManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="EnemiesFOV" Collapsed="true">
+    <Position X="37" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAQAAAAACEAAEAAIAAAAAIAEgACAAEAAAAAAAgAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\EnemiesFOV.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyTimeBody" Collapsed="true">
+    <Position X="25.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAACQBEAAAAAAgAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\EnemyTimeBody.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemiesFields" Collapsed="true">
+    <Position X="25.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAgAEEAIAAAIACAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\EnemyTimeBody.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MovementTestForObstecle" Collapsed="true">
+    <Position X="33" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQJAAAAACAAAAAAAACAAAAAAAAAAQAAAAAAAAABAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\MovementTestForObstecle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ActionTrigger" Collapsed="true">
+    <Position X="33" Y="2" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="ActionTrigger.TriggerType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Global\ActionTrigger.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAYABAAAACAAAAAAAAAAAAAQAAAAAAAAUAAAAoAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Global\ActionTrigger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DialogManager" Collapsed="true">
+    <Position X="31.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MASAAAAAAAAAAAAAAAAAAIAAEAAIABAAAAABAEIAAEA=</HashCode>
+      <FileName>Assets\Scripts\Global\DialogManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager" Collapsed="true">
+    <Position X="37" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAEAlmogEAAAAAChFAQAAAgAAMAAQAAAABQgEEA=</HashCode>
+      <FileName>Assets\Scripts\Global\GameManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="gameUI" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameUI" Collapsed="true">
+    <Position X="39" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQwCIAB0kAAAAAAAAAAABCAAABBQRAAAUCCEEAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Global\GameUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ITimeBody" Collapsed="true">
+    <Position X="25.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAEAAAAAAAAAABAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Global\ITimeBody.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="rewindManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MoveBetweenPoints" Collapsed="true">
+    <Position X="31.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBBgCAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAgBEA=</HashCode>
+      <FileName>Assets\Scripts\Global\MoveBetweenPoints.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Quest" Collapsed="true">
+    <Position X="40.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Assets\Scripts\Global\Quest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuestManager" Collapsed="true">
+    <Position X="36" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEACCACQAQAAAAAEAABAQAIAAAAAAAAAAAAAAAEEA=</HashCode>
+      <FileName>Assets\Scripts\Global\QuestManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QuestTrigger" Collapsed="true">
+    <Position X="38" Y="6.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="QuestTrigger.TriggerType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Global\QuestTrigger.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="QuestTrigger.QuestType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Global\QuestTrigger.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="QuestTrigger.Finishlvl" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Global\QuestTrigger.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAACAAACAAAAAAACAAhAQAAAAEAAAAUAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Global\QuestTrigger.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="quests" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="RewindManager" Collapsed="true">
+    <Position X="28.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQBAAAAAgRAEAAAAAACAAAAAAAAAAAAYAAQAgAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Global\RewindManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sentence" Collapsed="true">
+    <Position X="31.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAEAAEAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Assets\Scripts\Global\Sentence.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SentenceTrigger" Collapsed="true">
+    <Position X="33.75" Y="7.25" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="SentenceTrigger.TriggerType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Global\SentenceTrigger.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAACAAAABAAAAAAAAQAAAAAAAAUAAAAIAEAAA=</HashCode>
+      <FileName>Assets\Scripts\Global\SentenceTrigger.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="questManager" />
+      <Field Name="sent" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SoundManager" Collapsed="true">
+    <Position X="36" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAIAAAAEAAACABAACBwCCABAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Global\SoundManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="media" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="WorldObject" Collapsed="true">
+    <Position X="31.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAkiEAgAABAAAAACAAIAAABAAAAAAAAAKEAAAhEA=</HashCode>
+      <FileName>Assets\Scripts\Global\WorldObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainMenu" Collapsed="true">
+    <Position X="34.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAIEAAmAEAAAAAAAAAQAQAA=</HashCode>
+      <FileName>Assets\Scripts\MainMenu\MainMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CameraMovement" Collapsed="true">
+    <Position X="29.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgSAAABAAiAAAAEAIAAAAAAACgQAAQABgAQAAkAAgAA=</HashCode>
+      <FileName>Assets\Scripts\Player\CameraMovement.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="player" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CameraTimeBody" Collapsed="true">
+    <Position X="29.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAACQAUAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\CameraTimeBody.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CameraFields" Collapsed="true">
+    <Position X="29.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAACAIAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Assets\Scripts\Player\CameraTimeBody.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Capturing" Collapsed="true">
+    <Position X="29.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IEyBACAAACAAQAAAIIABAAAAIAACBIEAABAAAAQAEAA=</HashCode>
+      <FileName>Assets\Scripts\Player\Capturing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Invisibility" Collapsed="true">
+    <Position X="29.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAAAAACCAEAAAAABAAAAAAAAAAAAAAAAAQAgBEAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\Invisibility.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="gameManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MovableObject" Collapsed="true">
+    <Position X="26.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEgACAAAQiABAAAEAAAAAAEAAAAAAAABIAAAAAEAAAE=</HashCode>
+      <FileName>Assets\Scripts\Player\MovableObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="gameManager" />
+      <Field Name="player" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MovableObjectTimeBody" Collapsed="true">
+    <Position X="27.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAACQAEAAAAAAAAAAAAAAAAAAAAAAAAhAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\MovableObjectTimeBody.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MovableObjectFields" Collapsed="true">
+    <Position X="27.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AYAABAAAgCAAAAACAAAAAIACAAAAAAABAAQAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\MovableObjectTimeBody.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="player" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Movement" Collapsed="true">
+    <Position X="29.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kGRQgAMBQmAwQQQNAACgBgADAQAAAASAAgCBAAQSAoA=</HashCode>
+      <FileName>Assets\Scripts\Player\Movement.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="gameManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PlayerBaseInfo" Collapsed="true">
+    <Position X="29.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gEQIAAABSiAAAAAAAAIAgAAAEBAABAAIAAAIABAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\PlayerBaseInfo.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="gameManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PlayerTimeBody" Collapsed="true">
+    <Position X="23.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACEAAAAACQEEAAAAAAAAIAAAAAAAAAAAAQAAgAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\PlayerTimeBody.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerFields" Collapsed="true">
+    <Position X="23.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACCAAAABgAAQAAACAACAIIAAAAAAAAAAAAQQAAAQAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\PlayerTimeBody.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CopyOfGameManager">
+    <Position X="42.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAEAlmogEAAAAAChFAQAAAgAAMAAQAAAAAQgEEA=</HashCode>
+      <FileName>Assets\Scripts\Global\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="MusicFile" Collapsed="true">
+    <Position X="33.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAEAEAgAAAAAAACAAA=</HashCode>
+      <FileName>Assets\Scripts\Global\SoundManager.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
